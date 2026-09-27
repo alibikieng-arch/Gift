@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#19142c">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A cinematic interactive birthday surprise with a locked gift box, countdown, golden key, cat, music and phone reveal.">
+  <title>A Special Day Is Coming…</title>
+  <link rel="preload" as="image" href="assets/scene-reference.png">
+  <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+  <main id="app" class="app state-locked" data-state="LOCKED">
+    <div class="scene-backdrop" aria-hidden="true"></div>
+    <div class="scene-vignette" aria-hidden="true"></div>
+    <div class="scene-haze" aria-hidden="true"></div>
+    <div id="ambientParticles" class="ambient-particles" aria-hidden="true"></div>
+
+    <header class="top-ui">
+      <button id="authButton" class="glass-button icon-button" type="button" aria-label="Open access lock" aria-pressed="false" title="Open access lock">
+        <span class="lock-icon lock-closed" aria-hidden="true"><span></span></span>
+      </button>
+
+      <section class="hero-copy" aria-labelledby="pageTitle">
+        <div class="tiny-label">A little surprise is waiting</div>
+        <h1 id="pageTitle">A special day<br><em>is coming…</em></h1>
+        <div class="heart-line" aria-hidden="true">♡</div>
+        <p id="countdownStatus">Your birthday is almost here!</p>
+        <span id="countdownCaption">Just a little more patience…</span>
+
+        <div class="countdown" role="timer" aria-live="polite" aria-label="Countdown to the next birthday unlock period">
+          <div class="count-item"><strong id="days">00</strong><span>Days</span></div>
+          <i></i>
+          <div class="count-item"><strong id="hours">00</strong><span>Hours</span></div>
+          <i></i>
+          <div class="count-item"><strong id="minutes">00</strong><span>Minutes</span></div>
+          <i></i>
+          <div class="count-item"><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+      </section>
+    </header>
+
+    <section class="scene" id="scene" aria-label="Interactive birthday gift scene">
+      <div class="sunbeam sunbeam-a" aria-hidden="true"></div>
+      <div class="sunbeam sunbeam-b" aria-hidden="true"></div>
+
+      <div id="giftZone" class="gift-zone">
+        <div class="gift-shadow" aria-hidden="true"></div>
+        <div id="giftBox" class="gift-box" role="button" tabindex="0" aria-label="Locked birthday gift box" aria-expanded="false">
+          <div class="gift-aura" aria-hidden="true"></div>
+          <div class="gift-glow" aria-hidden="true"></div>
+          <div class="gift-body">
+            <div class="body-top"></div>
+            <div class="body-front"></div>
+            <div class="body-side"></div>
+            <div class="body-ribbon-v"></div>
+            <div class="body-ribbon-h"></div>
+            <div class="star s1">✦</div><div class="star s2">✦</div><div class="star s3">✦</div><div class="star s4">✦</div><div class="star s5">✦</div>
+            <div id="keyhole" class="keyhole" aria-label="Gift box keyhole"><span></span></div>
+          </div>
+          <div id="giftLid" class="gift-lid">
+            <div class="lid-top"></div>
+            <div class="lid-front"></div>
+            <div class="lid-side"></div>
+            <div class="lid-ribbon"></div>
+            <div class="bow bow-left"></div>
+            <div class="bow bow-right"></div>
+            <div class="bow-knot"></div>
+          </div>
+          <div class="inside-light" aria-hidden="true"></div>
+        </div>
+        <div class="gift-caption" aria-hidden="true"><span>✦</span> Good things take time <span>✦</span></div>
+      </div>
+
+      <div id="key" class="key hidden" role="button" tabindex="0" aria-label="Golden key. Drag me to the lock." aria-describedby="hintText">
+        <div class="key-ring"><span></span></div>
+        <div class="key-shaft"></div>
+        <div class="key-teeth"><span></span><span></span></div>
+        <div class="key-glint"></div>
+        <span class="key-label">Drag me to the lock</span>
+      </div>
+
+      <div id="hintText" class="interaction-hint" role="status" aria-live="polite"></div>
+
+      <div id="cat" class="cat" aria-hidden="true">
+        <div class="tail"><span></span></div>
+        <div class="cat-body">
+          <div class="chest"></div>
+          <div class="head">
+            <div class="ear left"></div><div class="ear right"></div>
+            <div class="face-stripe one"></div><div class="face-stripe two"></div><div class="face-stripe three"></div>
+            <div class="eye eye-left"><i></i></div><div class="eye eye-right"><i></i></div>
+            <div class="nose"></div><div class="mouth"></div>
+            <div class="whiskers wl1"></div><div class="whiskers wl2"></div><div class="whiskers wr1"></div><div class="whiskers wr2"></div>
+          </div>
+          <div class="paw paw-a"></div><div class="paw paw-b"></div>
+        </div>
+      </div>
+
+      <div id="yarnPink" class="yarn yarn-pink"><span></span></div>
+      <div id="yarnBlue" class="yarn yarn-blue"><span></span></div>
+      <div id="yarnLilac" class="yarn yarn-lilac"><span></span></div>
+      <div class="yarn-thread thread-a" aria-hidden="true"></div>
+      <div class="yarn-thread thread-b" aria-hidden="true"></div>
+    </section>
+
+    <footer class="bottom-ui">
+      <div class="bottom-left">
+        <button id="passwordButton" class="glass-button icon-button small hidden" type="button" aria-label="Change access address" title="Change access address">
+          <span class="mini-key" aria-hidden="true">⚿</span>
+        </button>
+        <div id="sessionPill" class="session-pill" aria-live="polite"><span class="dot"></span><span>Locked until October 1</span></div>
+      </div>
+      <p class="footer-note">♡ The best things take time…</p>
+      <button id="musicButton" class="glass-button music-button" type="button" aria-label="Toggle music" aria-pressed="false">
+        <span id="musicGlyph" aria-hidden="true">♫</span><span id="musicLabel">Music</span>
+      </button>
+    </footer>
+
+    <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="soundPrompt" class="sound-prompt hidden" role="dialog" aria-live="polite">
+      <div><strong>Enable the birthday soundtrack?</strong><span>A soft original piano motif is ready.</span></div>
+      <button id="enableSound" class="primary-button compact" type="button">Tap to enable sound</button>
+    </div>
+
+    <dialog id="accessDialog" class="glass-dialog" aria-labelledby="accessTitle">
+      <form id="accessForm" method="dialog" class="dialog-panel" novalidate>
+        <button class="dialog-close" type="button" data-close="accessDialog" aria-label="Close dialog">×</button>
+        <div class="dialog-kicker">ACCESS LOCK</div>
+        <h2 id="accessTitle">Enter your access address</h2>
+        <p>Use the private address to reveal the key at any time.</p>
+        <label for="accessInput">Access Address</label>
+        <div class="input-line">
+          <input id="accessInput" type="password" autocomplete="off" spellcheck="false" placeholder="Enter your access address" required>
+          <button id="showPassword" class="inline-eye" type="button" aria-label="Show access address">◉</button>
+        </div>
+        <div id="accessError" class="error-text" role="alert"></div>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-close="accessDialog">Cancel</button><button class="primary-button" type="submit">Unlock</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="passwordDialog" class="glass-dialog" aria-labelledby="passwordTitle">
+      <form id="passwordForm" method="dialog" class="dialog-panel" novalidate>
+        <button class="dialog-close" type="button" data-close="passwordDialog" aria-label="Close dialog">×</button>
+        <div class="dialog-kicker">CHANGE ACCESS ADDRESS</div>
+        <h2 id="passwordTitle">Update the private access</h2>
+        <p>This prototype stores a verification hash in this browser. Production authentication should move to a backend.</p>
+        <label for="currentAccess">Current Access Address</label>
+        <input id="currentAccess" type="password" autocomplete="off" required>
+        <label for="newAccess">New Access Address</label>
+        <input id="newAccess" type="password" autocomplete="new-password" minlength="4" required>
+        <div id="passwordError" class="error-text" role="alert"></div>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-close="passwordDialog">Cancel</button><button class="primary-button" type="submit">Save Password</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="phoneDialog" class="phone-dialog" aria-labelledby="phoneTitle">
+      <div class="phone-dialog-panel">
+        <button class="dialog-close light" type="button" data-close="phoneDialog" aria-label="Close phone viewer">×</button>
+        <div class="viewer-topline">
+          <div><div class="dialog-kicker">PHONE REVEAL</div><h2 id="phoneTitle">Your surprise is ready</h2></div>
+          <div id="uploadArea" class="upload-area hidden"><input id="videoInput" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime" hidden><button id="uploadVideo" class="secondary-button compact" type="button">Upload Video</button><span id="uploadText">Current browser session only</span></div>
+        </div>
+
+        <div class="viewer-grid">
+          <div class="device-wrap">
+            <div id="phoneDevice" class="phone-device" aria-label="iPhone 18 Pro Max style viewer">
+              <div class="phone-frame">
+                <div class="camera-island"></div>
+                <video id="heroVideo" class="phone-video" playsinline preload="metadata" aria-label="Birthday surprise video"></video>
+                <div id="videoPlaceholder" class="video-placeholder"><div class="placeholder-spark">✦</div><strong>Birthday Surprise</strong><span>Tap play when you're ready.</span></div>
+                <div class="phone-shine" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-panel">
+            <div class="video-header"><div><span>NOW PLAYING</span><strong id="videoTitle">Birthday Surprise</strong></div><time id="videoTime">00:00 / 00:00</time></div>
+            <input id="seekBar" class="seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Video progress">
+            <div class="player-row">
+              <button id="back10" class="player-button" type="button" aria-label="Seek backward 10 seconds">↶</button>
+              <button id="playVideo" class="player-button play" type="button" aria-label="Play video">▶</button>
+              <button id="forward10" class="player-button" type="button" aria-label="Seek forward 10 seconds">↷</button>
+              <button id="muteVideo" class="player-button" type="button" aria-label="Mute video">🔊</button>
+              <select id="speedVideo" aria-label="Playback speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+              <button id="fullscreenVideo" class="player-button" type="button" aria-label="Fullscreen video">⛶</button>
+            </div>
+            <p class="viewer-note">The bundled clip is an original local demo. Videos uploaded here stay in this browser session and are never sent to a server.</p>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>
